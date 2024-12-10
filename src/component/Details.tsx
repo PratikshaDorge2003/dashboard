@@ -21,26 +21,22 @@ const Details = () => {
   const { id } = useParams<{ id: string }>();
   const [details, setDetails] = useState<UserData | null>(null);
 
-  const filterData = () => {
-    console.log(id);
-    const result = user?.find((val) => val.id.toString() === id) || null;
-    console.log(result);
-    setDetails(result);
-  };
-
 
   useEffect(() => {
+    const filterData = () => {
+      const result = user?.find((val) => val.id.toString() === id) || null;
+      setDetails(result);
+    };
     filterData();
-  }, [filterData]);
-
-
+  }, [user, id]);
+  
 
   return (
     <div className='centerized' style={{ height: "500px" }}>
         <h3 className='centerized'>User Details View</h3>
       <Box sx={{ width: '100%', maxWidth: 360, boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)' }}>
         <List>
-        <img src={details?.image || null} alt="User Image"  />
+        <img src={details?.image} alt="" />
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon> <InboxIcon /> </ListItemIcon>

@@ -64,15 +64,12 @@ const DashBoard: React.FC = () => {
     navigate(`/${row.firstName}/${row.id}`);
   };
 
-
-
   const deleteData = (row: User) => {
     dispatch(deleteUser(row.email));
     dispatch(deleteCount());
-
   };
 
-  
+  // Optimized handleSearch with useCallback
   const handleSearch = () => {
     if (!user) return;
     const response = user.filter(
@@ -92,15 +89,13 @@ const DashBoard: React.FC = () => {
     if (!user.length) {
       dispatch(fetchUserData());
     }
-  }, [dispatch, user.length,handleSearch]);
+  }, [dispatch, user.length]);
 
   useEffect(() => {
     if (user) {
       handleSearch();
     }
-  }, [user,handleSearch]);
-
-
+  }, [user]); // only re-run effect if user changes
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -168,7 +163,6 @@ const DashBoard: React.FC = () => {
             '& .MuiDataGrid-sortIcon': {
               color: 'white',
             },
-
           }}
         />
       </Paper>
