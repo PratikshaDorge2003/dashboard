@@ -72,19 +72,7 @@ const DashBoard: React.FC = () => {
 
   };
 
-  useEffect(() => {
-    if (!user.length) {
-      dispatch(fetchUserData());
-    }
-  }, [dispatch, user.length]);
-
-  useEffect(() => {
-    if (user) {
-      handleSearch();
-    }
-  }, [user]);
-
-
+  
   const handleSearch = () => {
     if (!user) return;
     const response = user.filter(
@@ -99,6 +87,20 @@ const DashBoard: React.FC = () => {
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
+
+  useEffect(() => {
+    if (!user.length) {
+      dispatch(fetchUserData());
+    }
+  }, [dispatch, user.length,handleSearch]);
+
+  useEffect(() => {
+    if (user) {
+      handleSearch();
+    }
+  }, [user,handleSearch]);
+
+
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);

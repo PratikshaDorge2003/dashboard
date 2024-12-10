@@ -21,16 +21,18 @@ const Details = () => {
   const { id } = useParams<{ id: string }>();
   const [details, setDetails] = useState<UserData | null>(null);
 
-  useEffect(() => {
-    filterData();
-  }, []);
-
   const filterData = () => {
     console.log(id);
     const result = user?.find((val) => val.id.toString() === id) || null;
     console.log(result);
     setDetails(result);
   };
+
+
+  useEffect(() => {
+    filterData();
+  }, [filterData]);
+
 
 
   return (
