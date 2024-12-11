@@ -66,10 +66,11 @@ const DashBoard: React.FC = () => {
 
   const deleteData = (row: User) => {
     dispatch(deleteUser(row.email));
+    setFilteredData((prev) => prev.filter((item) => item.email !== row.email));
+    setCount((prev)=>prev-1);
     dispatch(deleteCount());
   };
 
-  // Optimized handleSearch with useCallback
   const handleSearch = () => {
     if (!user) return;
     const response = user.filter(
@@ -88,14 +89,18 @@ const DashBoard: React.FC = () => {
   useEffect(() => {
     if (!user.length) {
       dispatch(fetchUserData());
+      
     }
   }, [dispatch, user.length]);
 
   useEffect(() => {
-    if (user) {
-      handleSearch();
+    if (user.length && filteredData.length === 0 && name==='' && email==='') {
+      setFilteredData(user);
+      setCount(user.length); 
     }
-  }, [user]); // only re-run effect if user changes
+  }, [user, filteredData.length,name,email]);
+  
+
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
