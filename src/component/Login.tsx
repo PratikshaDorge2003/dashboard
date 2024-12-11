@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Box, TextField } from '@mui/material';
+import {  Box, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const Authentication = () => {
