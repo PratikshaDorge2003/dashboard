@@ -33,12 +33,12 @@ const DashBoard: React.FC = () => {
   const navigate = useNavigate();
 
   const infoColumns: GridColDef[] = [
-    { field: 'firstName', headerName: 'First Name', width: 150 },
-    { field: 'lastName', headerName: 'Last Name', width: 150 },
-    { field: 'age', headerName: 'Age', width: 100 },
-    { field: 'birthDate', headerName: 'Birth Date', width: 200 },
-    { field: 'gender', headerName: 'Gender', width: 200 },
-    { field: 'email', headerName: 'Email', width: 300 },
+    { field: 'firstName', headerName: 'First Name', flex: 1 },
+    { field: 'lastName', headerName: 'Last Name', flex: 1 },
+    { field: 'age', headerName: 'Age', flex: 0.5 },
+    { field: 'birthDate', headerName: 'Birth Date', flex: 1.5 },
+    { field: 'gender', headerName: 'Gender', flex: 1 },
+    { field: 'email', headerName: 'Email', flex: 2 },
     {
       field: 'action',
       headerName: 'Action',
@@ -56,9 +56,10 @@ const DashBoard: React.FC = () => {
           />
         </div>
       ),
-      width: 100,
+      flex: 0.5,
     },
   ];
+  
 
   const openFunction = (row: User) => {
     navigate(`/${row.firstName}/${row.id}`);
